@@ -1,0 +1,86 @@
+Trabalho Hadoop Infnet
+Tema: Montar database com hive
+
+
+https://docs.google.com/document/d/11S0rZ2DIJ4Cft4Wk3fbZ31kS4RNpn2hI7XIxQYpUfRg/edit?usp=sharing
+
+https://docs.google.com/document/d/1Gmaz9X4aQFbSLYhXXHYTEXvHRPUtpc9iriqDQnfuEWM/edit?usp=sharing
+
+
+
+gsutil ls
+gsutil cat
+
+hdfs dfs -ls
+
+criar o bucket para armazenar
+export WAREHOUSE_BUCKET=infnet_hadoop
+export REGION=us-central1
+export ZONE=us-central1-a
+gcloud storage buckets create gs://${WAREHOUSE_BUCKET} --location=${REGION}
+
+
+confirme se criou a base com:
+gsutil ls
+
+
+para criar a base de dados:
+gcloud sql instances create hive-metastore \
+    --database-version="MYSQL_5_7" \
+    --activation-policy=ALWAYS \
+    --zone ${ZONE}
+
+
+copiamos os dados para o bucket:
+gcloud storage cp gs://hive-hadoop/credito.csv \
+gs://${WAREHOUSE_BUCKET}/datasets/transactions/credito.csv
+
+
+export CLUSTER_NAME=cluster-d5e2
+
+
+criamos a tabela Hive
+gcloud dataproc jobs submit hive \
+    --cluster ${CLUSTER_NAME} \
+    --region ${REGION} \
+    --execute "
+      CREATE EXTERNAL TABLE hive.credit-data
+      (id INTEGER,default INTEGER,idade INTEGER,sexo STRING,dependentes INTEGER,escolaridade STRING,estado_civil STRING, salario_anual STRING, tipo_cartao STRING,meses_de_relacionamento INTEGER)
+      STORED AS CSV \
+      LOCATION 'gs://${WAREHOUSE_BUCKET}/datasets/transactions';"
+
+
+gcloud dataproc jobs submit hive  --cluster=${CLUSTER_NAME} --region=${REGION} \
+            -e="CREATE EXTERNAL TABLE hive.credit-data
+      (id INTEGER,default INTEGER,idade INTEGER,sexo STRING,dependentes INTEGER,escolaridade STRING,estado_civil STRING, salario_anual STRING, tipo_cartao STRING,meses_de_relacionamento INTEGER)
+      STORED AS CSV \
+      LOCATION 'gs://${WAREHOUSE_BUCKET}/datasets/transactions';"
+		
+
+caso tenha alguma duvida veja os possiveis comandos:
+gcloud dataproc jobs submit hive --help
+
+para sair, digite 'w' depois 'q'
+
+confirme se a regiao é us-central1
+
+export HIVE_BUCKET=gs://hive-hadoop/
+
+gcloud dataproc jobs submit hive --cluster=${CLUSTER_NAME} --region=${REGION} \
+            -e="CREATE EXTERNAL TABLE foo(bar int) LOCATION 'gs://${HIVE_BUCKET}'" -e="SELECT * FROM foo WHERE bar > 2"
+
+
+opcao de rodar comando do beeline:
+beeline -u jdbc:hive2://localhost:10000
+
+CREATE DATABASE infnet
+USE infnet
+
+CREATE EXTERNAL TABLE infnet.credito (
+id INT,default INT,idade INT,sexo VARCHAR(2),dependentes INT,escolaridade VARCHAR(30),estado_civil VARCHAR(12),salario_anual VARCHAR(20),tipo_cartao VARCHAR(10),meses_de_relacionamento INT
+)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+LOCATION 'gs://hive-hadoop/'
+
+SELECT * FROM infnet.credito
+DESCRIBE infnet.credito
