@@ -1,0 +1,409 @@
+
+Referencia da base
+https://www.kaggle.com/code/vbsmarcel/an-lise-de-cr-dito
+https://github.com/andre-marcos-perez/ebac-course-utils/tree/main/dataset
+
+Business Understanding
+Tirar a dúvida: Quais são os melhores clientes?
+
+Quais são os melhores clientes?
+Requisitos
+maior quantidade e valores de transações
+menor tempo de inatividade
+maiores iterações
+salário ideal (acima de 60K anual)
+
+
+EXPLORAÇÃO:
+Quantidade de registros: 2564 linhas
+Como são os dados: semiestruturados
+Quais tipos de dados: texto e números
+Explorando as colunas: necessidade de conversões de tipos
+
+
+ANÁLISE:
+Transações (Maior, menor e a média)
+Inatividade e Iterações (Maior, menor e a média)
+Limite de Crédito (Maior, menor e a média)
+Salários (acima de 60K anual)
+Cliente 1, Cliente 2 e Cliente 3
+
+
+CONCLUSÃO
+Data Understanding
+Contamos com as seguintes colunas:
+idade = idade do cliente
+sexo = sexo do cliente (F ou M)
+dependentes = número de dependentes do cliente
+escolaridade = nível de escolaridade dos clientes
+salario_anual = faixa salarial do cliente
+tipo_cartao = tipo de cartao do cliente
+qtd_produtos = quantidade de produtos comprados nos últimos 12 meses
+iteracoes_12m = quantidade de iterações/transacoes nos ultimos 12 meses
+meses_inativo_12m = quantidade de meses que o cliente ficou inativo
+limite_credito = limite de credito do cliente
+valor_transacoes_12m = valor das transações dos ultimos 12 meses
+qtd_transacoes_12m = quantidade de transacoes dos ultimos 12 meses
+
+Variáveis Relevantes
+ScoreSalario
+ScoreValor
+ScoreAtividade
+
+Avaliar qual a melhor:
+Regressão Linear;
+Regressão Logística;
+Árvore de Decisão; - grid search para encontrar os hiperparametros
+Rede neural; - variaveis no StandartScaler
+
+sklearn
+
+Eduardo Vilela de Araujo
+Andre Alves dos Santos
+
+
+Pandas
+Seaborn
+Matplotlib
+
+
+Consideramos "os melhores" aqueles com maior quantidade e valores de transações, menor tempo de inatividade, maiores iterações e que possuem maior salário.
+A estes é possível oferecer limite maior, melhores serviços, etc.
+Para isso encontrarei a média de cada item e usarei ela como base para o cliente entrar na categoria "dos melhores".
+No item salário consideramos relevantes os que recebem acima de 60K anual. Isso porque devido ao histórico são clientes que costumam honrar com os serviços contratados e possuem maior tempo de relacionamento na carteira.
+
+
+Usarei a variável "limite_credito" como parâmetro para selecionar, dentre os melhores clientes, àqueles que tem baixo limite.
+1 - Cliente tipo A retornou 15 registros de melhores clientes porém 4 clientes possuem limite de crédito abaixo da média
+2 - Cliente tipo B retornou 29 registros de melhores clientes porém 6 clientes possuem limite de crédito abaixo da média
+3 - Cliente tipo C retornou 22 registros de melhores clientes porém 15 clientes possuem limite de crédito abaixo da média
+
+Insights:
+Dentro do nosso universo analisado, todos os clientes selecionados possuem cartão do tipo "blue":
+Encontramos 66 melhores clientes totais e destes, 25 possuem limite de crédito bem abaixo do esperado;
+Para 25 clientes verificamos que devemos melhorar a oferta de crédito
+Para outros 56 clientes podemos melhorar o tipo de cartão
+
+
+
+Materia Hadoop
+san diego supercomp
+https://www.sdsc.edu/
+
+
+Sistema de Computação Petaflópica do SINAPAD
+petaflop - s dumont
+https://sdumont.lncc.br/machine.php
+
+
+gcp
+dataproc
+https://console.cloud.google.com/billing/01DBBB-2EE097-3998DD?hl=pt
+
+
+Url:
+https://infnet.online/courses/infraestrutura-hadoop/lessons/big-data/
+leonardo.spezia@al.infnet.edu.br
+0q&I6mC@!lkSI#KA
+
+
+Dataset
+https://brasil.io/datasets/
+
+console.cloud.google.com/dataproc
+
+https://console.cloud.google.com/billing
+
+leonardo.spezia@al.infnet.edu.br
+Lgs!@#8381
+https://lms.infnet.edu.br/moodle/mod/url/view.php?id=412324
+
+
+Victor Andre Ormastroni
+
+https://www.carrosnaweb.com.br/fichadetalhe.asp?codigo=19682&token=7ea207eb34bb2bfd9a94c57aa7363a73#google_vignette
+MWM | MM101327E | MOTOR 2.8L JUMPER FURGON 2009
+Atual FPT Powertrain
+
+5502 0996 5147 5604
+08/29
+532
+
+utilizar o hive atraves do beeline
+beeline -u jdbc:hive2://localhost:10000/default -n <usuario>@<cluster> -d org.apache.hive.jdbc.HiveDriver
+
+beeline -u jdbc:hive2://localhost:10000/default -n lgspezia@cluster-d5e2-m -d org.apache.hive.jdbc.HiveDriver
+
+
+comando para visualizar os arquivos
+gcloud storage ls gs://BUCKET_NAME
+
+https://cloud.google.com/storage/docs/gcsfuse-quickstart-mount-bucket?hl=pt-br
+beeline -u jdbc:hive2://localhost:10000/default -n mitbigdata2024@bigdatacurso-m -d org.apache.hive.jdbc.HiveDriver
+
+hive
+https://hive.apache.org/
+
+https://www.linkedin.com/pulse/what-partitioning-vs-bucketing-apache-hive-shrivastava/
+https://sparkbyexamples.com/apache-hive/hive-partitioning-vs-bucketing-with-examples/
+
+Dataset
+https://brasil.io/datasets/
+
+
+
+Apache Sqoop
+sqoop.apach.org
+instalar na maquina GCP
+
+
+Instalacao Sqoop
+############### Instalação do Sqoop ##############################
+wget https://archive.apache.org/dist/sqoop/1.4.6/sqoop-1.4.6.bin__hadoop-2.0.4-alpha.tar.gz
+tar -xvf sqoop-1.4.6.bin__hadoop-2.0.4-alpha.tar.gz
+ 
+##### Incluir as variáveis de ambiente abaixo no final do seu arquivo .bashrc
+export SQOOP_HOME=~/sqoop-1.4.6.bin__hadoop-2.0.4-alpha
+export PATH=$PATH:$SQOOP_HOME/bin
+source ~/.bashrc
+ 
+#### Baixar o driver JDBC do MySQL e copiá-lo para o lib do SQOOP
+wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-j-8.1.0.tar.gz
+tar -xvf mysql-connector-j-8.1.0.tar.gz
+sudo mv mysql-connector-j-8.1.0/mysql-connector-j-8.1.0.jar /$SQOOP_HOME/lib
+ 
+#### Configurar o Sqoop
+cd $SQOOP_HOME/conf
+cp sqoop-env-template.sh sqoop-env.sh
+#### Incluir as variáveis de ambiente no final do seu arquivo sqoop-env.sh
+export HADOOP_COMMON_HOME=/usr/lib/hadoop
+export HADOOP_MAPRED_HOME=/usr/lib/hadoop-mapreduce
+
+
+
+export GCSFUSE_REPO=gcsfuse-`lsb_release -c -s`
+echo "deb http://packages.cloud.google.com/apt $GCSFUSE_REPO main" | sudo tee /etc/apt/sources.list.d/gcsfuse.list
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install gcsfuse
+
+
+https://docs.google.com/document/d/1uqZigDvjFTm5JUOpdsI9HZiINUXRtH8ocvYUwRa716A/edit?usp=sharing
+
+
+streaming de dados no hadoop - https://www.dremio.com/wiki/hadoop-streaming-data-access/
+
+trabalho - escrever artigo no medium
+
+
+https://docs.google.com/document/d/1uqZigDvjFTm5JUOpdsI9HZiINUXRtH8ocvYUwRa716A/edit?usp=sharing
+
+
+
+https://github.com/speechify-recruiting/platform-functional-lgspezia.git
+git clone https://github.com/speechify-recruiting/platform-functional-lgspezia.git
+
+Set-ExecutionPolicy -Scope LocalMachine -ExecutionPolicy RemoteSigned -Force
+Install-Module posh-git -Scope CurrentUser -Force
+Install-Module posh-git -Scope CurrentUser -AllowPrerelease -Force # Newer beta version with PowerShell Core support
+Install-Module PowerShellGet -Force -SkipPublisherCheck
+Import-Module posh-git
+Add-PoshGitToProfile -AllHosts
+
+
+
+85850000003 7 52000432242 4 64071624239 4 33215946541 6
+
+043.204.309-80
+Número: 07.16.24239.3321594-6
+Pagar até: 20/09/2024
+Valor: 352,00
+
+
+
+ pessoal, segue o script para vcs montarem um bucket dentro do sistema de arquivos da máquina virtual:
+ 
+############## Instalação do GCSFUSE #######################
+####### GCSFUSE é uma aplicação que permite que você monte um 'bucket' do GCP no sistema de arquivos da sua VM
+####### Dessa forma, ao fazer upload de arquivos para o bucket você pode utilizá-los dentro da VM
+export GCSFUSE_REPO=gcsfuse-`lsb_release -c -s`
+echo "deb http://packages.cloud.google.com/apt $GCSFUSE_REPO main" | sudo tee /etc/apt/sources.list.d/gcsfuse.list
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install gcsfuse
+ 
+ 
+############## Montagem do bucket no sistema de arquivos da VM #######################
+mkdir arquivos-curso
+gcsfuse <nome-bucket> arquivos-curso
+
+
+
+
+fala pessoal, segue o script de instalação e configuraçã odo Sqoop
+ 
+############### Instalação do Sqoop ##############################
+
+wget https://archive.apache.org/dist/sqoop/1.4.6/sqoop-1.4.6.bin__hadoop-2.0.4-alpha.tar.gz
+
+tar -xvf sqoop-1.4.6.bin__hadoop-2.0.4-alpha.tar.gz
+ 
+##### Incluir as variáveis de ambiente abaixo no final do seu arquivo .bashrc
+
+export SQOOP_HOME=~/sqoop-1.4.6.bin__hadoop-2.0.4-alpha
+
+export PATH=$PATH:$SQOOP_HOME/bin
+
+source ~/.bashrc
+ 
+#### Baixar o driver JDBC do MySQL e copiá-lo para o lib do SQOOP
+
+wget https://dev.mysql.com/get/Downloads/Connector-J/mysql-connector-j-8.1.0.tar.gz
+
+tar -xvf mysql-connector-j-8.1.0.tar.gz
+
+sudo mv mysql-connector-j-8.1.0/mysql-connector-j-8.1.0.jar /$SQOOP_HOME/lib
+ 
+#### Configurar o Sqoop
+
+cd $SQOOP_HOME/conf
+
+cp sqoop-env-template.sh sqoop-env.sh
+
+#### Incluir as variáveis de ambiente no final do seu arquivo sqoop-env.sh
+
+export HADOOP_COMMON_HOME=/usr/lib/hadoop
+
+export HADOOP_MAPRED_HOME=/usr/lib/hadoop-mapreduce
+
+
+
+
+Flume
+flume.apache.org
+
+wget https://downloads.apache.org/flume/1.11.0/apache-flume-1.11.0-bin.tar.gz
+tar xzf apache-flume-1.11.0-bin.tar.gz
+
+
+Trabalho: montar database com hive
+
+
+
+https://docs.google.com/document/d/11S0rZ2DIJ4Cft4Wk3fbZ31kS4RNpn2hI7XIxQYpUfRg/edit?usp=sharing
+
+https://docs.google.com/document/d/1Gmaz9X4aQFbSLYhXXHYTEXvHRPUtpc9iriqDQnfuEWM/edit?usp=sharing
+
+
+
+gsutil ls
+gsutil cat
+
+hdfs dfs -ls
+
+criar o bucket para armazenar
+export WAREHOUSE_BUCKET=infnet_hadoop
+export REGION=us-central1
+export ZONE=us-central1-a
+gcloud storage buckets create gs://${WAREHOUSE_BUCKET} --location=${REGION}
+
+
+confirme se criou a base com:
+gsutil ls
+
+
+para criar a base de dados:
+gcloud sql instances create hive-metastore \
+    --database-version="MYSQL_5_7" \
+    --activation-policy=ALWAYS \
+    --zone ${ZONE}
+
+
+copiamos os dados para o bucket:
+gcloud storage cp gs://hive-hadoop/credito.csv \
+gs://${WAREHOUSE_BUCKET}/datasets/transactions/credito.csv
+
+
+export CLUSTER_NAME=cluster-d5e2
+export HIVE_BUCKET=hive-hadoop
+
+
+criamos a tabela Hive
+gcloud dataproc jobs submit hive \
+    --cluster ${CLUSTER_NAME} \
+    --region ${REGION} \
+    --execute "
+      CREATE EXTERNAL TABLE hive.credit-data
+      (id INTEGER,default INTEGER,idade INTEGER,sexo STRING,dependentes INTEGER,escolaridade STRING,estado_civil STRING, salario_anual STRING, tipo_cartao STRING,meses_de_relacionamento INTEGER)
+      STORED AS CSV \
+      LOCATION 'gs://${WAREHOUSE_BUCKET}/datasets/transactions';"
+
+
+gcloud dataproc jobs submit hive  --cluster=${CLUSTER_NAME} --region=${REGION} \
+            -e="CREATE EXTERNAL TABLE hive.credit-data
+      (id INTEGER,default INTEGER,idade INTEGER,sexo STRING,dependentes INTEGER,escolaridade STRING,estado_civil STRING, salario_anual STRING, tipo_cartao STRING,meses_de_relacionamento INTEGER)
+      STORED AS CSV \
+      LOCATION 'gs://${HIVE_BUCKET}';"
+		
+
+caso tenha alguma duvida veja os possiveis comandos:
+gcloud dataproc jobs submit hive --help
+
+para sair, digite 'w' depois 'q'
+
+confirme se a regiao é us-central1
+
+
+gcloud dataproc jobs submit hive --cluster=${CLUSTER_NAME} --region=${REGION} \
+            -e="CREATE EXTERNAL TABLE dataset2(bar int, age int, name string) LOCATION 'credito.csv'" -e="SELECT * FROM fooio WHERE bar > 2"
+
+
+gcloud dataproc jobs submit hive  --cluster=${CLUSTER_NAME} --region=${REGION} \
+	-e="SHOW DATABASE"
+
+
+Fazer a consulta para verificacao dos dados:
+
+
+gcloud dataproc jobs submit hive \
+    --cluster ${CLUSTER_NAME} \
+    --region ${REGION} \
+    --execute "
+      SELECT *
+      FROM dataset
+      LIMIT 10;"
+
+
+gcloud dataproc jobs submit hive \
+    --cluster ${CLUSTER_NAME} \
+    --region ${REGION} \
+    --execute "	
+	INSERT INTO dataset (bar, age, name) VALUES (1, 12, 'John');"
+
+
+gcloud dataproc jobs wait 4a9ad6e9343747fabe684db37596b7fc --project proven-grid-431200-g9 --region us-central1
+
+
+bucket criado
+gs://hive-hadoop/credito.csv
+
+opcao de rodar comando do beeline:
+beeline -u jdbc:hive2://localhost:10000
+
+CREATE DATABASE infnet
+USE infnet
+
+CREATE EXTERNAL TABLE infnet.credito (
+id INT,default INT,idade INT,sexo VARCHAR(2),dependentes INT,escolaridade VARCHAR(30),estado_civil VARCHAR(12),salario_anual VARCHAR(20),tipo_cartao VARCHAR(10),meses_de_relacionamento INT
+)
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+LOCATION 'gs://hive-hadoop/'
+
+SELECT * FROM infnet.credito
+DESCRIBE infnet.credito
+
+
+
+usando o GCFuse
+gcsfuse hive-hadoop arquivos-curso
+
