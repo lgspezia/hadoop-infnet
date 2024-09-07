@@ -101,11 +101,6 @@ dataproc
 https://console.cloud.google.com/billing/01DBBB-2EE097-3998DD?hl=pt
 
 
-Url:
-https://infnet.online/courses/infraestrutura-hadoop/lessons/big-data/
-leonardo.spezia@al.infnet.edu.br
-0q&I6mC@!lkSI#KA
-
 
 Dataset
 https://brasil.io/datasets/
@@ -114,20 +109,10 @@ console.cloud.google.com/dataproc
 
 https://console.cloud.google.com/billing
 
-leonardo.spezia@al.infnet.edu.br
-Lgs!@#8381
-https://lms.infnet.edu.br/moodle/mod/url/view.php?id=412324
+
+Professor Victor Andre Ormastroni
 
 
-Victor Andre Ormastroni
-
-https://www.carrosnaweb.com.br/fichadetalhe.asp?codigo=19682&token=7ea207eb34bb2bfd9a94c57aa7363a73#google_vignette
-MWM | MM101327E | MOTOR 2.8L JUMPER FURGON 2009
-Atual FPT Powertrain
-
-5502 0996 5147 5604
-08/29
-532
 
 utilizar o hive atraves do beeline
 beeline -u jdbc:hive2://localhost:10000/default -n <usuario>@<cluster> -d org.apache.hive.jdbc.HiveDriver
@@ -212,16 +197,8 @@ Add-PoshGitToProfile -AllHosts
 
 
 
-85850000003 7 52000432242 4 64071624239 4 33215946541 6
 
-043.204.309-80
-Número: 07.16.24239.3321594-6
-Pagar até: 20/09/2024
-Valor: 352,00
-
-
-
- pessoal, segue o script para vcs montarem um bucket dentro do sistema de arquivos da máquina virtual:
+Oi pessoal, segue o script para vcs montarem um bucket dentro do sistema de arquivos da máquina virtual:
  
 ############## Instalação do GCSFUSE #######################
 ####### GCSFUSE é uma aplicação que permite que você monte um 'bucket' do GCP no sistema de arquivos da sua VM
